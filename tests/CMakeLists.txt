@@ -16,8 +16,14 @@ target_link_libraries(login_test PRIVATE GTest::gtest_main Qt5::Core Qt5::Networ
         common
         client::api)
 
+add_executable(serialize_test serialize.cc)
+target_link_libraries(serialize_test PRIVATE GTest::gtest_main Qt5::Core Qt5::Network
+        nlohmann_json::nlohmann_json
+        common)
+
 include(GoogleTest)
 gtest_discover_tests(categories)
 gtest_discover_tests(login_test)
+gtest_discover_tests(serialize_test)
 
 windeployqt(login_test)
